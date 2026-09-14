@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EventHub</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a href="#/catalogue" class="site-header__logo">EventHub<span class="site-header__dot" aria-hidden="true"></span></a>
+
+    <div class="site-header__search" id="headerSearch">
+      <button type="button" class="site-header__search-toggle" id="searchToggle" aria-label="Search events" aria-expanded="false" aria-controls="headerSearchField">
+        <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M13.6 12.2a6 6 0 1 1 1.4-1.4l4 4-1.4 1.4-4-4ZM9 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="currentColor"/></svg>
+      </button>
+      <div class="site-header__search-field" id="headerSearchField">
+        <svg class="site-header__search-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M13.6 12.2a6 6 0 1 1 1.4-1.4l4 4-1.4 1.4-4-4ZM9 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="currentColor"/></svg>
+        <label for="searchInput" class="visually-hidden">Search events</label>
+        <input type="search" id="searchInput" name="q" placeholder="Search events" autocomplete="off" data-action="stub">
+      </div>
+    </div>
+
+    <nav class="site-header__actions" id="headerActions" aria-label="Account"></nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- CATALOGUE -->
+  <section id="screen-catalogue" class="screen" data-screen="catalogue">
+    <div class="page-banner">
+      <div class="container">
+        <h1 class="page-title">Upcoming events</h1>
+        <p class="page-subtitle" id="catalogueSubtitle"></p>
+
+        <div class="filter-bar" id="filterBar">
+          <div class="filter-bar__controls">
+            <div class="filter-field select-wrap">
+              <label for="filterCity" class="visually-hidden">City</label>
+              <select id="filterCity" class="select"></select>
+            </div>
+            <div class="filter-field select-wrap">
+              <label for="filterDate" class="visually-hidden">Date range</label>
+              <select id="filterDate" class="select"></select>
+            </div>
+            <div class="filter-field select-wrap">
+              <label for="filterTopic" class="visually-hidden">Topic</label>
+              <select id="filterTopic" class="select"></select>
+            </div>
+            <button type="button" class="btn btn--secondary" data-action="stub">More filters</button>
+          </div>
+          <div class="filter-bar__sheet-footer">
+            <button type="button" class="btn btn--secondary btn--block" id="filterSheetClose">Show results</button>
+          </div>
+        </div>
+        <div class="filter-sheet-backdrop" id="filterSheetBackdrop" hidden></div>
+        <button type="button" class="btn btn--secondary filter-bar__open-btn" id="filterOpenBtn">Filters</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="chip-row" id="chipRow"></div>
+      <div class="catalogue-toolbar">
+        <span id="resultCount" class="catalogue-toolbar__count"></span>
+        <span class="catalogue-toolbar__sort">Sorted by date</span>
+      </div>
+      <div class="event-grid" id="eventGrid"></div>
+      <div id="emptyState" hidden></div>
+      <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS -->
+  <section id="screen-event" class="screen" data-screen="event">
+    <div id="eventDetailRoot"></div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="screen-booking" class="screen" data-screen="booking">
+    <div id="bookingRoot"></div>
+  </section>
+
+  <!-- CONFIRMATION -->
+  <section id="screen-confirmation" class="screen" data-screen="confirmation">
+    <div id="confirmationRoot"></div>
+  </section>
+
+  <!-- SIGN IN -->
+  <section id="screen-signin" class="screen" data-screen="signin">
+    <div class="container container--narrow">
+      <form class="auth-card" id="signinForm" novalidate>
+        <h1 class="auth-card__title">Welcome back</h1>
+        <p class="auth-card__subtitle">Sign in to manage your bookings</p>
+
+        <div class="form-field">
+          <label for="signinEmail">Email</label>
+          <input type="email" id="signinEmail" name="email" placeholder="you@example.com" autocomplete="email">
+          <p class="form-field__error" id="signinEmailError" hidden></p>
+        </div>
+
+        <div class="form-field">
+          <div class="form-field__row">
+            <label for="signinPassword">Password</label>
+            <button type="button" class="link-button" data-action="stub">Forgot?</button>
+          </div>
+          <input type="password" id="signinPassword" name="password" placeholder="••••••••" autocomplete="current-password">
+          <p class="form-field__error" id="signinPasswordError" hidden></p>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">Sign in</button>
+        <p class="auth-card__footer">No account?
+          <button type="button" class="link-button link-button--strong" data-action="stub">Create one</button>
+        </p>
+      </form>
+      <p class="auth-card__note">Any email with a password of four or more characters signs you in. Nothing is verified — this is a prototype.</p>
+    </div>
+  </section>
+
+  <!-- MY BOOKINGS -->
+  <section id="screen-bookings" class="screen" data-screen="bookings">
+    <div id="bookingsRoot"></div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="screen-profile" class="screen" data-screen="profile">
+    <div id="profileRoot"></div>
+  </section>
+
+</main>
+
+<!-- REVIEW MODAL (overlay on #/bookings) -->
+<div class="modal-overlay" id="reviewModalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" id="reviewModal">
+    <div class="modal__header">
+      <div>
+        <h2 class="modal__title" id="reviewModalTitle">Rate this event</h2>
+        <p class="modal__subtitle" id="reviewModalSubtitle"></p>
+      </div>
+      <button type="button" class="modal__close" id="reviewModalClose" aria-label="Close dialog">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <form id="reviewForm" novalidate>
+      <div class="modal__body" id="reviewModalBody">
+        <fieldset class="star-rating" id="starRating">
+          <legend>Your rating</legend>
+          <div class="star-rating__stars">
+            <input type="radio" name="rating" id="star5" value="5"><label for="star5"><span class="visually-hidden">5 stars</span>★</label>
+            <input type="radio" name="rating" id="star4" value="4"><label for="star4"><span class="visually-hidden">4 stars</span>★</label>
+            <input type="radio" name="rating" id="star3" value="3"><label for="star3"><span class="visually-hidden">3 stars</span>★</label>
+            <input type="radio" name="rating" id="star2" value="2"><label for="star2"><span class="visually-hidden">2 stars</span>★</label>
+            <input type="radio" name="rating" id="star1" value="1"><label for="star1"><span class="visually-hidden">1 star</span>★</label>
+          </div>
+        </fieldset>
+        <p class="form-field__error" id="ratingError" hidden>Choose a rating from 1 to 5.</p>
+
+        <div class="form-field">
+          <label for="reviewComment">Comment</label>
+          <textarea id="reviewComment" rows="4" placeholder="What did you think of this event?"></textarea>
+        </div>
+      </div>
+
+      <div class="modal__footer">
+        <button type="button" class="btn btn--secondary" id="reviewCancel">Cancel</button>
+        <button type="submit" class="btn btn--primary" id="reviewSubmit">Submit review</button>
+      </div>
+    </form>
+    <div class="modal__saved" id="reviewSavedMsg" role="status" aria-live="polite" hidden>✓ Review saved</div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
