@@ -10,3 +10,5 @@ Covers the basic scenario end to end:
 
 The advanced scenario — sign in, cancel a booking, leave a review — is implemented in the
 HTML/JS version in [`../web`](../web).
+
+See [`../figma-guide.md`](../figma-guide.md) for how the prototype was assembled.

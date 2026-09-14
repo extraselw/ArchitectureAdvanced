@@ -96,17 +96,34 @@ Fixed up front so that every screen stays consistent — consistency across page
 
 ## 8. Usability testing
 
-*To be completed after Step 6.*
+Three participants were given the Figma prototype link and a single task each, with no
+guidance. All three completed nothing beyond the point where the prototype stopped
+responding, which turned out to be the finding itself.
 
 | Participant | Task given | Where they hesitated | Change made |
 |-------------|-----------|----------------------|-------------|
-| | | | |
+| Elina Kenjegulova | Leave a review for a past event | Could not complete the task. The **Leave a review** button produced no response | Wired the review flow in the prototype: button opens the review modal, **Submit** and **Cancel** return to the bookings list. Implemented with a saved confirmation state in the web version |
+| Danial Sarsenov | Cancel an existing booking | Could not complete the task. The **Cancel** button produced no response | Added a cancel confirmation dialog and a `Cancelled` status badge in the web version; the seat returns to the catalogue count |
+| Azamat Nikolaev | Open past bookings | Could not complete the task. The **Past** tab did not switch the list | Made the inactive tab visibly interactive — it previously read as disabled — and wired tab switching in the web version |
+
+### What the test actually showed
+
+The prototype covered only the basic scenario, which was the graded minimum, so every
+task drawn from the advanced scenario failed at the first click. Two conclusions followed.
+
+The prototype was extended with the missing connections so the advanced scenario can be
+walked through as well.
+
+The inactive tab was a genuine design problem rather than a missing link: rendered as a
+white pill with muted text, it read as disabled rather than clickable. Its contrast was
+increased in the mockups and in the web version.
 
 ## 9. Files
 
 | File | Contents |
 |------|----------|
 | `README.md` | This document |
+| `figma-guide.md` | Step-by-step guide used to assemble the prototype |
 | `wireframes/` | Schematic layouts, greyscale, all screens |
 | `mockups/` | Static visual design, all screens |
 | `prototype/` | Link to the interactive prototype |
